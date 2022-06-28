@@ -1,5 +1,5 @@
 const {ethers} = require('hardhat');
-const { CRYPTO_DEVS_NFT_CONTRACT_ADDRESS} = require("../constants");
+const { CRYPTO_DEVS_NFT_CONTRACT_ADDRESS} = require("../constant");
 
 
 async function main() {

@@ -14,7 +14,7 @@ contract CryptoDevToken is ERC20, Ownable {
     // Each Crypto Dev NFT will get 10 free tokens but must pay for gas
     uint256 public constant tokensPerNFT = 10 * 10**18;
      // Max token supply is 10,000
-    uint256 public constant maxTotalSuplly = 10000 * 10**18;
+    uint256 public constant maxTotalSupply = 10000 * 10**18;
 
     // CryptoDev NFT contract
     ICryptoDevs CryptoDevsNFT;
@@ -33,7 +33,7 @@ contract CryptoDevToken is ERC20, Ownable {
         require(msg.value >= _requiredAmount, "Incorrect amount of ETH sent");
         // total tokens + amount <= 10,000 otherwise revert
         uint256 amountWithDecimals = amount * 10**18;
-        require((totalSupply() + amountWithDecimals) <= maxTotalSuplly, "Exceeded amount of totalSupply");
+        require((totalSupply() + amountWithDecimals) <= maxTotalSupply, "Exceeded amount of totalSupply");
          // Call internal function from openzeppelin
         _mint(msg.sender, amountWithDecimals);
     }
