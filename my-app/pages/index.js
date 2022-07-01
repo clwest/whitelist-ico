@@ -54,10 +54,10 @@ export default function Home() {
         setTokensToBeClaimed(zero);
       } else {
         // amount keeps track of unclaimed tokens
-        let amount = 0;
-        for (let i = 0; i < balance; i++ ) {
+        var amount = 0;
+        for (var i = 0; i < balance; i++ ) {
           const tokenId = await nftContract.tokenOfOwnerByIndex(address, i);
-          const claimed = await tokenContract.tokensIdsClaimed(tokenid);
+          const claimed = await tokenContract.tokensIdsClaimed(tokenId);
           if (!claimed) {
             amount++;
           }
@@ -218,19 +218,22 @@ export default function Home() {
   // useEffect is used to change state of the website
   // whenever the value of walletConnected changes this effect will be called 
   useEffect(() => {
+    // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
     if (!walletConnected) {
+      // Assign the Web3Modal class to the reference object by setting it's `current` value
+      // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
-        network: 'rinkeby',
+        network: "rinkeby",
         providerOptions: {},
         disableInjectedProvider: false,
-      })
+      });
       connectWallet();
       getTotalTokensMinted();
       getBalanceOfCryptoDevTokens();
       getTokensToBeClaimed();
       withdrawCoins();
     }
-  }, [walletConnected])
+  }, [walletConnected]);
 
   // render buttons based on state
   const renderButton = () => {
