@@ -583,7 +583,7 @@ export const NFT_CONTRACT_ABI =  [
     }
   ]
 
-export const TOKEN_CONTRACT_ADDRESS = "0xf397Ca19cEA7ac82053Ae6bd819021440907BF30"
+export const TOKEN_CONTRACT_ADDRESS = "0x0CA2d517Dc535cB16B9511D202081Ffb22a3e05B"
 export const TOKEN_CONTRACT_ABI = [
   {
     "inputs": [
