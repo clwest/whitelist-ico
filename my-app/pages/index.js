@@ -127,7 +127,7 @@ export default function Home() {
     const signer = await getProviderOrSigner(true);
     const tokenContract = new Contract(TOKEN_CONTRACT_ADDRESS, TOKEN_CONTRACT_ABI, signer);
 
-    const t = await tokenContract.claim()
+    const tx = await tokenContract.claim()
     setLoading(true);
     // wait for transaction to get mined
     await tx.wait()
@@ -154,6 +154,21 @@ export default function Home() {
       console.error(err)
     }
   }
+
+    // withdraw eth and tokens by calling withdraw function
+  const withdrawCoins = async () => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const tokenContract = new Contract(TOKEN_CONTRACT_ADDRESS, TOKEN_CONTRACT_ABI, signer);
+      const tx = await tokenContract.withdraw();
+      setLoading(true);
+      await tx.wait();
+      setLoading(false);
+      await getOwner()
+    } catch (err) {
+      console.error(err);
+    }
+  }
   // get the contract owner by conneted address
   const getOwner = async () => {
     try {
@@ -172,20 +187,7 @@ export default function Home() {
       console.error(err)
     }
   }
-  // withdraw eth and tokens by calling withdraw function
-  const withdrawCoins = async () => {
-    try {
-      const signer = await getProviderOrSigner(true);
-      const tokenContract = new Contract(TOKEN_CONTRACT_ADDRESS, TOKEN_CONTRACT_ABI, signer);
-      const tx = await tokenContract.withdraw();
-      setLoading(true);
-      await tx.wait();
-      setLoading(false);
-      await getOwner()
-    } catch (err) {
-      console.error(err);
-    }
-  }
+
 
   // Create a Ethereum RPC
   const getProviderOrSigner = async (needSigner=false) => {
