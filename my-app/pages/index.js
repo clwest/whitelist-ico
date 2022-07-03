@@ -309,7 +309,7 @@ export default function Home() {
           <div>
             <div className={styles.description}>
               {/* Format Ether helps convert BigNumber to string*/}
-              you have minted {utils.formatEther(balanceOfCryptoDevTokens)} Crypto
+              you have minted {utils.formatEther(balanceOfCryptoDevTokens)}{" "} Crypto
               Dev Tokens
             </div>
             <div className={styles.description}>
